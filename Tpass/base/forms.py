@@ -5,10 +5,11 @@ from django import forms
 # sign-up form
 class SignUpForm(UserCreationForm):
     email = forms.EmailField(label="", widget = forms.TextInput(attrs={'class':'form-control', 'placeholder':'Email Address'}))
-    mobile = forms.CharField(label="", widget = forms.TextInput(attrs={'class':'form-control','placeholder':'Mobile No.'}))
+    first_name = forms.EmailField(label="", widget = forms.TextInput(attrs={'class':'form-control', 'placeholder':'First Name'}))
+    last_name = forms.EmailField(label="", widget = forms.TextInput(attrs={'class':'form-control', 'placeholder':'Last Name'}))
     class Meta:
         model = User
-        fields = ['username', 'password1', 'password2', 'email', 'mobile' ]
+        fields = ['username', 'password1', 'password2', 'email', 'first_name', 'last_name' ]
 
     def __init__(self, *args, **kwargs):
         super(SignUpForm, self).__init__(*args, **kwargs)
