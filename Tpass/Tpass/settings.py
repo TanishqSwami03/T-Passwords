@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'base',
+    'dashboard',
 
     'django.contrib.sites',
     'allauth',
@@ -45,6 +46,8 @@ INSTALLED_APPS = [
     'allauth.socialaccount',
 
     'allauth.socialaccount.providers.google',
+    'allauth.socialaccount.providers.github',
+    'allauth.socialaccount.providers.discord',
 ]
 
 
@@ -143,13 +146,30 @@ SITE_ID = 2
 SOCIALACCOUNT_LOGIN_ON_GET = True
 
 LOGIN_REDIRECT_URL = '/dashboard/'
-LOGOUT_REDIRECT_URL = '/login_user/'
+LOGOUT_REDIRECT_URL = '/'
 
 SOCIALACCOUNT_PROVIDERS = {
     'google': {
         "SCOPE":[
             "profile",
             "email",
+        ],
+        "AUTH_PARAMS": {
+            "access_type": "online",
+        }
+    },
+    'github': {
+        "SCOPE":[
+            "profile",
+            "email",
+        ],
+        "AUTH_PARAMS": {
+            "access_type": "online",
+        }
+    },
+    'github': {
+        "SCOPE":[
+            "identify",
         ],
         "AUTH_PARAMS": {
             "access_type": "online",
