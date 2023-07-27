@@ -16,7 +16,7 @@ def login_user(request):
         if user is not None:
             login(request, user)
             # messages.success(request, "You are successfully logged in !")
-            return redirect('dashboard')
+            return redirect('dashboard_home')
         else:
             # messages.success(request, "Error occured, try again !")
             return redirect('login_user')
@@ -34,7 +34,7 @@ def signup_user(request):
             user = authenticate(request, username=username, password=password)
             if user is not None:
                 login(request, user)
-                return redirect('dashboard')
+                return redirect('dashboard_home')
             else:
                 return redirect('signup_user')
 
@@ -50,11 +50,11 @@ def logout_user(request):
     return redirect('login_user')
 
 
-def dashboard(request):
-    if request.user.is_authenticated:
-        # messages.success(request, "Welcome to the T-Passwords Dashboard.")
-        return render(request, 'dashboard.html', {})
+# def dashboard(request):
+#     if request.user.is_authenticated:
+#         # messages.success(request, "Welcome to the T-Passwords Dashboard.")
+#         return render(request, 'dashboard.html', {})
     
-    else:
-        # messages.success(request, "You have to be logged in to use the dashboard.")
-        return render(request, 'home.html', {})
+#     else:
+#         # messages.success(request, "You have to be logged in to use the dashboard.")
+#         return render(request, 'home.html', {})

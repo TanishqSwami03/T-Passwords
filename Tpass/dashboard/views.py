@@ -4,4 +4,5 @@ from django.contrib import messages
 # Create your views here.
 
 def dashboard_home(request):
+    # return render(request, 'dashboard_home.html', {})
     return render(request, 'dashboard_home.html', {})
