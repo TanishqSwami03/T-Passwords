@@ -44,11 +44,6 @@ def signup_user(request):
 
     return render(request, 'signup.html', {'form':form})
 
-def logout_user(request):
-    logout(request)
-    # messages.success(request, "You have logged out successfully !")
-    return redirect('login_user')
-
 
 # def dashboard(request):
 #     if request.user.is_authenticated:

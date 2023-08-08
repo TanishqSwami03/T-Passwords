@@ -1,2 +1,20 @@
 
 /*# sourceMappingURL=custom.min.css.map */
+
+/* .menu-title{
+    margin: 0px 8px;
+} */
+
+/* .btn-sm{
+    --vz-btn-padding-x: 0.7rem;
+} */
+
+/* .btn-space{
+    background-color: #8c68cd;
+    --vz-btn-padding-x: 0.7rem;
+
+} */
+
+.table-responsive{
+    overflow-x:unset;
+}
