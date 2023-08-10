@@ -11,15 +11,18 @@
                     aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <div id="task-error-msg" class="alert alert-danger py-2"></div>
+                <div id="task-error-msg" class="alert alert-danger py-2">
+
+                </div>
                 <form autocomplete="off" action="{% url 'add_items' %}" method="POST" id="creattask-form">
+                    {% csrf_token %}
                     <input type="hidden" id="taskid-input" class="form-control">
                     <div class="mb-3">
                         <label for="task-title-input" class="form-label">Name</label>
                         <input type="text" id="task-title-input" class="form-control" name="name"
                             placeholder="eg, Google, Whatsapp">
                     </div>
-                    <div class="mb-3 position-relative">
+                    <!-- <div class="mb-3 position-relative">
                         <label for="task-assign-input" class="form-label">Space</label>
 
                         <div class="avatar-group justify-content-center" id="assignee-member"></div>
@@ -33,28 +36,20 @@
                                 <div data-simplebar style="max-height: 141px">
                                     <ul class="list-unstyled mb-0">
                                         <li>
-                                            <a class="dropdown-item d-flex align-items-center" href="#">
-                                                <div class="avatar-xxs flex-shrink-0 me-2">
-                                                    <img src="assets/images/users/avatar-2.jpg" alt=""
-                                                        class="img-fluid rounded-circle" />
-                                                </div>
-                                                <div class="flex-grow-1">James Forbes</div>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a class="dropdown-item d-flex align-items-center" href="#">
-                                                <div class="avatar-xxs flex-shrink-0 me-2">
-                                                    <img src="assets/images/users/avatar-3.jpg" alt=""
-                                                        class="img-fluid rounded-circle" />
-                                                </div>
-                                                <div class="flex-grow-1">John Robles</div>
-                                            </a>
+                                            <div class="dropdown-item d-flex align-items-center">
+                                                <select name="space" class="form-control">
+                                                    {% for space in space_select %}
+                                                    <option value="{{space.id}}">{{ space }}</option>
+                                                    {% endfor %}
+                                                </select>
+
+                                            </div>
                                         </li>
                                     </ul>
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
                     <div class="mb-3">
                         <label for="task-title-input" class="form-label">Username</label>
                         <input type="text" id="task-title-input" class="form-control" name="username"

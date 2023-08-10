@@ -203,17 +203,19 @@
                                                         </div>
                                                     </th> -->
                                                     <th scope="col">Name</th>
-                                                    <th scope="col">Space</th>
+                                                    <th scope="col">Username</th>
                                                     <th scope="col">Created</th>
                                                     <th scope="col">Action</th>
                                                 </tr>
                                             </thead>
 
                                             <tbody id="task-list">
+                                                {% if password_items %}
+                                                {% for pass in password_items %}
                                                 <tr>
-                                                    <td class="name">Google</td>
-                                                    <td class="space">James Morris</td>
-                                                    <td class="created">28 July, 2023</td>
+                                                    <td class="name">{{ pass.name }}</td>
+                                                    <td class="space">{{ pass.username }}</td>
+                                                    <td class="created">{{ pass.created_updated }}</td>
                                                     <td>
                                                         <div class="dropdown">
                                                             <button class="btn btn-soft-primary btn-sm dropdown"
@@ -243,6 +245,8 @@
                                                         </div>
                                                     </td>
                                                 </tr>
+                                                {% endfor %}
+                                                {% endif %}
                                             </tbody>
                                         </table>
                                     </div>
