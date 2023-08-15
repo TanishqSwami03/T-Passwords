@@ -11,73 +11,55 @@
                     aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <div id="task-error-msg" class="alert alert-danger py-2"></div>
+                <div id="task-error-msg" class="alert alert-danger py-2">
+
+                </div>
                 <form autocomplete="off" action="{% url 'add_items' %}" method="POST" id="creattask-form">
+                    {% csrf_token %}
                     <input type="hidden" id="taskid-input" class="form-control">
                     <div class="mb-3">
-                        <label for="task-title-input" class="form-label">Name</label>
-                        <input type="text" id="task-title-input" class="form-control" name="name"
+                        <label for="task-title-input-1" class="form-label">Name :</label>
+                        <input type="text" id="task-title-input-1" class="form-control" name="name"
                             placeholder="eg, Google, Whatsapp">
                     </div>
-                    <div class="mb-3 position-relative">
-                        <label for="task-assign-input" class="form-label">Space</label>
+                    <!-- <div class="mb-3 position-relative">
+                        <label for="task-assign-input" class="form-label">Select Space :</label>
 
                         <div class="avatar-group justify-content-center" id="assignee-member"></div>
                         <div class="select-element">
-                            <button class="btn btn-light w-100 d-flex justify-content-between" type="button"
-                                data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">
-                                <span>Select from Space</span>
-                                <i class="mdi mdi-chevron-down"></i>
-                            </button>
-                            <div class="dropdown-menu w-100">
-                                <div data-simplebar style="max-height: 141px">
-                                    <ul class="list-unstyled mb-0">
-                                        <li>
-                                            <a class="dropdown-item d-flex align-items-center" href="#">
-                                                <div class="avatar-xxs flex-shrink-0 me-2">
-                                                    <img src="assets/images/users/avatar-2.jpg" alt=""
-                                                        class="img-fluid rounded-circle" />
-                                                </div>
-                                                <div class="flex-grow-1">James Forbes</div>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a class="dropdown-item d-flex align-items-center" href="#">
-                                                <div class="avatar-xxs flex-shrink-0 me-2">
-                                                    <img src="assets/images/users/avatar-3.jpg" alt=""
-                                                        class="img-fluid rounded-circle" />
-                                                </div>
-                                                <div class="flex-grow-1">John Robles</div>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </div>
+                            <div class="dropdown-item d-flex align-items-center">
+                                <select name="space" class="form-control">
+                                    {% for spc in space %}
+                                    <option value="">{{ spc }}</option>
+                                    {% endfor %}
+                                </select>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
                     <div class="mb-3">
-                        <label for="task-title-input" class="form-label">Username</label>
-                        <input type="text" id="task-title-input" class="form-control" name="username"
+                        <label for="task-title-input-2" class="form-label">Username :</label>
+                        <input type="text" id="task-title-input-2" class="form-control" name="username"
                             placeholder="Enter Username">
                     </div>
                     <div class="mb-3">
-                        <label for="task-title-input" class="form-label">Password</label>
-                        <input type="password" id="task-title-input" class="form-control" name="password"
+                        <label for="task-title-input-3" class="form-label">Password :</label>
+                        <input type="password" id="task-title-input-3" class="form-control" name="password"
                             placeholder="Enter Password">
                     </div>
                     <div class="mb-3">
-                        <label for="task-title-input" class="form-label">Other details ( if needed )</label>
-                        <input type="text" id="task-title-input" class="form-control" name="other_details"
+                        <label for="task-title-input-4" class="form-label">Other details ( if needed ) :</label>
+                        <input type="text" id="task-title-input-4" class="form-control" name="other_details"
                             placeholder="Other details">
                     </div>
                     <!--end col-->
+
+                    <div class="hstack gap-2 justify-content-end px-2 mb-2">
+                        <button type="button" class="btn btn-ghost-danger" data-bs-dismiss="modal"><i
+                                class="ri-close-fill align-bottom"></i> Close</button>
+                        <button type="submit" class="btn btn-primary" id="addNewTodo">submit</button>
+                    </div>
+                </form>
             </div>
-            <div class="hstack gap-2 justify-content-end px-2 mb-2">
-                <button type="button" class="btn btn-ghost-danger" data-bs-dismiss="modal"><i
-                        class="ri-close-fill align-bottom"></i> Close</button>
-                <button type="submit" class="btn btn-primary" id="addNewTodo">Add</button>
-            </div>
-            </form>
         </div>
     </div>
 </div>
