@@ -235,18 +235,18 @@
                                                                         onclick="location.href = 'apps-tickets-details.html';"><i
                                                                             class="ri-eye-fill align-bottom me-2 text-muted"></i>
                                                                         View</button></li>
-                                                                <li><a class="dropdown-item edit-item-btn"
-                                                                        href="#showModal" data-bs-toggle="modal"><i
+                                                                <!-- <li><a class="dropdown-item edit-item-btn"
+                                                                        href="#"
+                                                                        data-bs-toggle="modal"><i
                                                                             class="ri-pencil-fill align-bottom me-2 text-muted"></i>
                                                                         Edit</a></li>
-                                                                <li>
-                                                                    <a class="dropdown-item remove-item-btn"
-                                                                        data-bs-toggle="modal"
-                                                                        href="{% url 'remove_items' %}">
-                                                                        <i
-                                                                            class="ri-delete-bin-fill align-bottom me-2 text-muted"></i>
-                                                                        Delete
-                                                                    </a>
+                                                                <li> -->
+                                                                <a class="dropdown-item remove-item-btn"
+                                                                    href="{% url 'remove_items' pass.id %}">
+                                                                    <i
+                                                                        class="ri-delete-bin-fill align-bottom me-2 text-muted"></i>
+                                                                    Delete
+                                                                </a>
                                                                 </li>
                                                             </ul>
                                                         </div>

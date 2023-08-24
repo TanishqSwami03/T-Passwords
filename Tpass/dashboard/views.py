@@ -17,8 +17,10 @@ def logout_user(request):
     # messages.success(request, "You have logged out successfully !")
     return redirect('home')
 
-def remove_items(request):
-    return render(request, 'remove_items.html', {})
+def remove_items(request, rem_id):
+    passitem = PasswordItem.objects.get(pk=rem_id)
+    passitem.delete()
+    return redirect('dashboard_home')
 
 def add_items(request):
     # space = Space.objects.all()    
@@ -41,3 +43,25 @@ def add_items(request):
     return render(request, 'dashboard_home.html', {})
     # else:
     #     return render(request, 'dashboard_home.html', {'space':space})
+
+
+# def edit_items(request, item_id):
+#     item = PasswordItem.objects.get(pk=item_id)
+
+#     if request.method == 'POST':
+#         name = request.POST.get('name')
+#         username = request.POST.get('username')
+#         password = request.POST.get('password')
+#         other_details = request.POST.get('other_details')
+        
+#         item.name = name
+#         item.username = username
+#         # item.space = space
+#         item.password = password
+#         item.other_details = other_details
+#         item.save()
+        
+#         return redirect('dashboard_home')
+    
+#     context = {'item': item}
+#     return render(request, 'edit_itmes.html', context)
