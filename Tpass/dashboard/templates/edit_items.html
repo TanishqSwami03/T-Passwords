@@ -1,0 +1,67 @@
+{% extends 'dashboard_home.html' %}
+
+{% block content %}
+
+<div class="modal fade" id="createTask" tabindex="-1" aria-labelledby="createTaskLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content border-0">
+            <div class="modal-header p-3 bg-primary-subtle">
+                <h5 class="modal-title" id="createTaskLabel">Edit Password</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" id="createTaskBtn-close"
+                    aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div id="task-error-msg" class="alert alert-danger py-2">
+
+                </div>
+                <form autocomplete="off" action="{% url 'edit_items' item.id %}" method="POST" id="creattask-form">
+                    {% csrf_token %}
+                    <input type="hidden" id="taskid-input" class="form-control">
+                    <div class="mb-3">
+                        <label for="task-title-input-1" class="form-label">Name :</label>
+                        <input type="text" id="task-title-input-1" class="form-control" name="name"
+                            placeholder="eg, Google, Whatsapp">
+                    </div>
+                    <!-- <div class="mb-3 position-relative">
+                        <label for="task-assign-input" class="form-label">Select Space :</label>
+
+                        <div class="avatar-group justify-content-center" id="assignee-member"></div>
+                        <div class="select-element">
+                            <div class="dropdown-item d-flex align-items-center">
+                                <select name="space" class="form-control">
+                                    {% for spc in space %}
+                                    <option value="">{{ spc }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+                    </div> -->
+                    <div class="mb-3">
+                        <label for="task-title-input-2" class="form-label">Username :</label>
+                        <input type="text" id="task-title-input-2" class="form-control" name="username"
+                            placeholder="Enter Username">
+                    </div>
+                    <div class="mb-3">
+                        <label for="task-title-input-3" class="form-label">Password :</label>
+                        <input type="password" id="task-title-input-3" class="form-control" name="password"
+                            placeholder="Enter Password">
+                    </div>
+                    <div class="mb-3">
+                        <label for="task-title-input-4" class="form-label">Other details ( if needed ) :</label>
+                        <input type="text" id="task-title-input-4" class="form-control" name="other_details"
+                            placeholder="Other details">
+                    </div>
+                    <!--end col-->
+
+                    <div class="hstack gap-2 justify-content-end px-2 mb-2">
+                        <button type="button" class="btn btn-ghost-danger" data-bs-dismiss="modal"><i
+                                class="ri-close-fill align-bottom"></i> Close</button>
+                        <button type="submit" class="btn btn-primary" id="addNewTodo">submit</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
