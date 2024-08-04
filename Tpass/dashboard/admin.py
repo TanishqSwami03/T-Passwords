@@ -4,3 +4,4 @@ from .models import *
 
 admin.site.register(Space)
 admin.site.register(PasswordItem)
+admin.site.register(CustomUser)

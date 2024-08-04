@@ -4,18 +4,14 @@
 <html lang="en" data-layout="vertical" data-topbar="light" data-sidebar="dark" data-sidebar-size="lg"
     data-sidebar-image="none" data-bs-theme="dark" data-body-image="img-1" data-preloader="disable">
 
-
 <head>
-
     <meta charset="utf-8" />
     <title>T Passwords Dashboard</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- App favicon -->
     <link rel="shortcut icon" href="/static/logo/fav_logo.png">
-
     <!-- Dragula css -->
     <link rel="stylesheet" href="/static/libs/dragula/dragula.min.css" />
-
     <!-- Layout config Js -->
     <script src="/static/js/layout.js"></script>
     <!-- Bootstrap Css -->
@@ -27,20 +23,19 @@
     <!-- custom Css-->
     <link href="/static/css/custom.min.css" rel="stylesheet" type="text/css" />
 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
 </head>
 
 <body>
 
     <!-- Begin page -->
     <div id="layout-wrapper">
-
         <header id="page-topbar">
             <div class="layout-width">
                 <div class="navbar-header">
                     <div class="d-flex">
                         <!-- LOGO -->
-
-
                         <button type="button"
                             class="btn btn-sm px-3 fs-16 header-item vertical-menu-btn topnav-hamburger"
                             id="topnav-hamburger-icon">
@@ -51,18 +46,15 @@
                             </span>
                         </button>
                     </div>
-
                     <div class="d-flex align-items-center">
                         <div class="dropdown me-xl-4 header-item topbar-user">
                             <button type="button" class="btn" id="page-header-user-dropdown" data-bs-toggle="dropdown"
                                 aria-haspopup="true" aria-expanded="false">
                                 <span class="d-flex align-items-center">
-                                    <marquee behavior="scroll" scrollamount="3" direction="up">
-                                        Hello
-                                    </marquee>
+                                    <marquee behavior="scroll" scrollamount="3" direction="up">Hello</marquee>
                                     <span class="text-start ms-xl-2">
                                         <span class="d-none d-xl-inline-block ms-1 fw-semibold user-name-text">
-                                            Tanishq
+                                            {{ request.user.name }}
                                         </span>
                                     </span>
                                 </span>
@@ -91,7 +83,6 @@
         <div class="app-menu navbar-menu">
             <!-- LOGO -->
             <div class="navbar-brand-box">
-
                 <!-- Light Logo-->
                 <a href="#" class="logo logo-light">
                     <span class="logo-sm">
@@ -106,16 +97,11 @@
                     <i class="ri-record-circle-line"></i>
                 </button>
             </div>
-
             <div id="scrollbar">
                 <div class="container-fluid">
-
                     <div id="two-column-menu">
                         <li class="menu-title d-flex justify-content-start">
                             <span data-key="t-menu">Spaces</span>
-                            <!-- <button type="button" class="btn btn-soft-success btn-sm">
-                                <i class="ri-add-line align-bottom"></i>
-                            </button> -->
                         </li>
                     </div>
                     <ul class="navbar-nav" id="navbar-nav">
@@ -137,7 +123,6 @@
                 </div>
                 <!-- Sidebar -->
             </div>
-
             <div class="sidebar-background"></div>
         </div>
         <!-- Left Sidebar End -->
@@ -148,10 +133,8 @@
         <!-- Start right Content here -->
         <!-- ============================================================== -->
         <div class="main-content">
-
             <div class="page-content">
                 <div class="container-fluid">
-
                     <div class="chat-wrapper d-lg-flex gap-1 mx-n4 mt-n4 p-1">
                         <!--end side content-->
                         <div class="file-manager-content w-100 p-4 pb-0 border bg-transparent">
@@ -163,16 +146,6 @@
                             </div>
                             <div class="p-3 border rounded mb-4">
                                 <div class="row g-2">
-                                    <!-- <div class="col-lg-auto">
-                                        <select class="form-control" data-choices data-choices-search-false
-                                            name="choices-select-status" id="choices-select-status">
-                                            <option value="">All Tasks</option>
-                                            <option value="Completed">Completed</option>
-                                            <option value="Inprogress">Inprogress</option>
-                                            <option value="Pending">Pending</option>
-                                            <option value="New">New</option>
-                                        </select>
-                                    </div> -->
                                     <div class="col-lg">
                                         <div class="search-box">
                                             <form action="{% url 'dashboard_home' %}" method="GET">
@@ -184,46 +157,30 @@
                                     </div>
                                     <div class="col-lg-auto">
                                         <button class="btn btn-primary createTask" type="button" data-bs-toggle="modal"
-                                            data-bs-target="#createTask">
-                                            <i href="{% url 'add_items' %}" class="ri-add-fill align-bottom"></i> Add
-                                            Items
+                                            data-bs-target="#createTask" onclick="clearForm()">
+                                            <i class="ri-add-fill align-bottom"></i> Add Items
                                         </button>
                                     </div>
                                 </div>
                             </div>
-
                             <div class="todo-content position-relative px-4 mx-n4" id="todo-content">
-                                <!-- <div id="elmLoader">
-                                    <div class="spinner-border text-primary avatar-sm" role="status">
-                                        <span class="visually-hidden">Loading...</span>
-                                    </div>
-                                </div> -->
                                 <div class="todo-task" id="todo-task">
                                     <div class="table-responsive">
                                         <table class="table align-middle position-relative table-nowrap">
                                             <thead class="table-active">
                                                 <tr>
-                                                    <!-- <th scope="col" style="width: 40px;">
-                                                        <div class="form-check">
-                                                            <input class="form-check-input" type="checkbox"
-                                                                id="checkAll" value="option">
-                                                        </div>
-                                                    </th> -->
                                                     <th scope="col">Name</th>
                                                     <th scope="col">Username</th>
-                                                    <!-- <th scope="col">Space</th> -->
                                                     <th scope="col">Created</th>
                                                     <th scope="col">Action</th>
                                                 </tr>
                                             </thead>
-
                                             <tbody id="task-list">
                                                 {% if password_items %}
                                                 {% for pass in password_items %}
                                                 <tr>
                                                     <td class="name">{{ pass.name }}</td>
                                                     <td class="space">{{ pass.username }}</td>
-                                                    <!-- <td class="space">{{ pass.space }}</td> -->
                                                     <td class="created">{{ pass.created_updated }}</td>
                                                     <td>
                                                         <div class="dropdown">
@@ -233,22 +190,15 @@
                                                                 <i class="ri-more-fill align-middle"></i>
                                                             </button>
                                                             <ul class="dropdown-menu dropdown-menu-end">
-                                                                <!-- <li><button class="dropdown-item"
-                                                                        onclick="location.href = 'apps-tickets-details.html';"><i
-                                                                            class="ri-eye-fill align-bottom me-2 text-muted"></i>
-                                                                        View</button></li> -->
-                                                                <!-- <li><a class="dropdown-item edit-item-btn"
-                                                                        href="#"
-                                                                        data-bs-toggle="modal"><i
-                                                                            class="ri-pencil-fill align-bottom me-2 text-muted"></i>
-                                                                        Edit</a></li> -->
                                                                 <li>
-                                                                    <a class="dropdown-item remove-item-btn"
-                                                                        href="{% url 'edit_items' pass.id %}">
+                                                                    <a class="dropdown-item edit-item-btn"
+                                                                        href="#createTask" data-bs-toggle="modal"
+                                                                        onclick="populateForm('{{ pass.id }}', '{{ pass.name }}', '{{ pass.username }}', '{{ pass.password }}', '{{ pass.other_details }}')">
                                                                         <i
                                                                             class="ri-pencil-fill align-bottom me-2 text-muted"></i>
                                                                         Edit
                                                                     </a>
+
                                                                 </li>
                                                                 <li>
                                                                     <a class="dropdown-item remove-item-btn"
@@ -275,10 +225,8 @@
                                     <h5 class="mt-4">Sorry! No Result Found</h5>
                                 </div>
                             </div>
-
                         </div>
                     </div>
-
                 </div>
                 <!-- container-fluid -->
             </div>
@@ -288,7 +236,6 @@
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col-sm-6">
-                            <!-- <script>document.write(new Date().getFullYear())</script>  -->
                             2023 © T Passwords
                         </div>
                         <div class="col-sm-6">
@@ -301,50 +248,113 @@
             </footer>
         </div>
         <!-- end main content-->
-
     </div>
     <!-- END layout-wrapper -->
 
-
-
-    <!-- Add Items -->
-    {% include 'add_items.html' %}
-    <!--end Add items-->
-
-    <!-- removeFileItemModal -->
-
-    <!--end delete modal -->
-
-    <!--start back-to-top-->
-    <button onclick="topFunction()" class="btn btn-primary btn-icon" id="back-to-top">
-        <i class="ri-arrow-up-line"></i>
-    </button>
-    <!--end back-to-top-->
-
-    <!--preloader-->
-    <div id="preloader">
-        <div id="status">
-            <div class="spinner-border text-primary avatar-sm" role="status">
-                <span class="visually-hidden">Loading...</span>
+    <!-- Add Items Modal -->
+    <div class="modal fade" id="createTask" tabindex="-1" aria-labelledby="createTaskLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content border-0">
+                <div class="modal-header p-3 bg-primary-subtle">
+                    <h5 class="modal-title" id="createTaskLabel">{% if item %}Edit Item{% else %}Create New{% endif %}
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="itemForm" method="POST"
+                        action="{% if item %}{% url 'add_or_edit_item' item.id %}{% else %}{% url 'add_or_edit_item' %}{% endif %}">
+                        {% csrf_token %}
+                        <input type="hidden" id="itemId" name="item_id" value="{% if item %}{{ item.id }}{% endif %}">
+                        <div class="mb-3">
+                            <label for="itemName" class="form-label">Name :</label>
+                            <input type="text" id="itemName" class="form-control" name="name"
+                                placeholder="eg, Google, Whatsapp" value="{% if item %}{{ item.name }}{% endif %}">
+                        </div>
+                        <div class="mb-3">
+                            <label for="itemUsername" class="form-label">Username :</label>
+                            <input type="text" id="itemUsername" class="form-control" name="username"
+                                placeholder="Enter Username" value="{% if item %}{{ item.username }}{% endif %}">
+                        </div>
+                        <div class="mb-3">
+                            <label for="itemPassword" class="form-label">Password :</label>
+                            <div class="input-group">
+                                <input type="password" id="itemPassword" class="form-control" name="password"
+                                    placeholder="Enter Password" value="{% if item %}{{ item.password }}{% endif %}">
+                                <button type="button" class="btn btn-outline-secondary" id="togglePassword">
+                                    <i class="fa fa-eye" id="togglePasswordIcon"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="itemOtherDetails" class="form-label">Other details (if needed) :</label>
+                            <input type="text" id="itemOtherDetails" class="form-control" name="other_details"
+                                placeholder="Other details" value="{% if item %}{{ item.other_details }}{% endif %}">
+                        </div>
+                        <div class="hstack gap-2 justify-content-end px-2 mb-2">
+                            <button type="button" class="btn btn-ghost-danger" data-bs-dismiss="modal"><i
+                                    class="ri-close-fill align-bottom"></i> Close</button>
+                            <button type="submit" class="btn btn-primary" id="addNewTodo">Submit</button>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
+
+    <!-- End Add Items Modal -->
 
     <!-- JAVASCRIPT -->
     <script src="/static/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="/static/libs/simplebar/simplebar.min.js"></script>
     <script src="/static/libs/node-waves/waves.min.js"></script>
     <script src="/static/libs/feather-icons/feather.min.js"></script>
-    <script src="/static/js/pages/plugins/lord-icon-2.1.0.js"></script>
-    <!-- <script src="/static/js/plugins.js"></script> -->
-    <!-- dragula init js -->
+    <!-- <script src="/static/js/pages/plugins/lord-icon-2.1.0.js"></script> -->
     <script src="/static/libs/dragula/dragula.min.js"></script>
     <script src="/static/libs/dom-autoscroller/dom-autoscroller.min.js"></script>
-
     <script src="/static/js/pages/todo.init.js"></script>
-
-    <!-- App js -->
     <script src="/static/js/app.js"></script>
+    <script>
+        function populateForm(id, name, username, password, otherDetails) {
+            document.getElementById('itemId').value = id;
+            document.getElementById('itemName').value = name;
+            document.getElementById('itemUsername').value = username;
+            document.getElementById('itemPassword').value = password;
+            document.getElementById('itemOtherDetails').value = otherDetails;
+        }
+
+        function clearForm() {
+            document.getElementById('itemForm').action = `{% url 'add_or_edit_item' %}`;
+            document.getElementById('itemId').value = '';
+            document.getElementById('itemName').value = '';
+            document.getElementById('itemUsername').value = '';
+            document.getElementById('itemPassword').value = '';
+            document.getElementById('itemOtherDetails').value = '';
+        }
+
+        document.addEventListener('DOMContentLoaded', function () {
+            const togglePasswordButton = document.getElementById('togglePassword');
+            const passwordField = document.getElementById('itemPassword');
+            const togglePasswordIcon = document.getElementById('togglePasswordIcon');
+
+            if (togglePasswordButton && passwordField && togglePasswordIcon) {
+                togglePasswordButton.addEventListener('click', function () {
+                    const passwordFieldType = passwordField.getAttribute('type');
+
+                    if (passwordFieldType === 'password') {
+                        passwordField.setAttribute('type', 'text');
+                        togglePasswordIcon.classList.remove('fa-eye');
+                        togglePasswordIcon.classList.add('fa-eye-slash');
+                    } else {
+                        passwordField.setAttribute('type', 'password');
+                        togglePasswordIcon.classList.remove('fa-eye-slash');
+                        togglePasswordIcon.classList.add('fa-eye');
+                    }
+                });
+            }
+        });
+
+
+    </script>
 </body>
 
 </html>

@@ -1,4 +1,5 @@
 {% extends 'dashboard_home.html' %}
+{% load i18n %}
 
 {% block content %}
 
@@ -6,57 +7,45 @@
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content border-0">
             <div class="modal-header p-3 bg-primary-subtle">
-                <h5 class="modal-title" id="createTaskLabel">Edit Password</h5>
+                <h5 class="modal-title" id="createTaskLabel">{% if item %}Edit Item{% else %}Create New{% endif %}</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" id="createTaskBtn-close"
                     aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <div id="task-error-msg" class="alert alert-danger py-2">
-
-                </div>
-                <form autocomplete="off" action="{% url 'edit_items' item.id %}" method="POST" id="creattask-form">
+                <div id="task-error-msg" class="alert alert-danger py-2"></div>
+                <form id="itemForm" method="POST"
+                    action="{% if item %}{% url 'add_or_edit_item' item.id %}{% else %}{% url 'add_or_edit_item' %}{% endif %}">
                     {% csrf_token %}
-                    <input type="hidden" id="taskid-input" class="form-control">
+                    <input type="hidden" id="itemId" name="item_id" value="{% if item %}{{ item.id }}{% endif %}">
                     <div class="mb-3">
-                        <label for="task-title-input-1" class="form-label">Name :</label>
-                        <input type="text" id="task-title-input-1" class="form-control" name="name"
-                            placeholder="eg, Google, Whatsapp">
+                        <label for="itemName" class="form-label">Name :</label>
+                        <input type="text" id="itemName" class="form-control" name="name"
+                            placeholder="eg, Google, Whatsapp" value="{% if item %}{{ item.name }}{% endif %}">
                     </div>
-                    <!-- <div class="mb-3 position-relative">
-                        <label for="task-assign-input" class="form-label">Select Space :</label>
-
-                        <div class="avatar-group justify-content-center" id="assignee-member"></div>
-                        <div class="select-element">
-                            <div class="dropdown-item d-flex align-items-center">
-                                <select name="space" class="form-control">
-                                    {% for spc in space %}
-                                    <option value="">{{ spc }}</option>
-                                    {% endfor %}
-                                </select>
-                            </div>
+                    <div class="mb-3">
+                        <label for="itemUsername" class="form-label">Username :</label>
+                        <input type="text" id="itemUsername" class="form-control" name="username"
+                            placeholder="Enter Username" value="{% if item %}{{ item.username }}{% endif %}">
+                    </div>
+                    <div class="mb-3">
+                        <label for="itemPassword" class="form-label">Password :</label>
+                        <div class="input-group">
+                            <input type="password" id="itemPassword" class="form-control" name="password"
+                                placeholder="Enter Password" value="{% if item %}{{ item.password }}{% endif %}">
+                            <button type="button" class="btn btn-outline-secondary" id="togglePassword">
+                                <i class="fa fa-eye" id="togglePasswordIcon"></i>
+                            </button>
                         </div>
-                    </div> -->
-                    <div class="mb-3">
-                        <label for="task-title-input-2" class="form-label">Username :</label>
-                        <input type="text" id="task-title-input-2" class="form-control" name="username"
-                            placeholder="Enter Username">
                     </div>
                     <div class="mb-3">
-                        <label for="task-title-input-3" class="form-label">Password :</label>
-                        <input type="password" id="task-title-input-3" class="form-control" name="password"
-                            placeholder="Enter Password">
+                        <label for="itemOtherDetails" class="form-label">Other details (if needed) :</label>
+                        <input type="text" id="itemOtherDetails" class="form-control" name="other_details"
+                            placeholder="Other details" value="{% if item %}{{ item.other_details }}{% endif %}">
                     </div>
-                    <div class="mb-3">
-                        <label for="task-title-input-4" class="form-label">Other details ( if needed ) :</label>
-                        <input type="text" id="task-title-input-4" class="form-control" name="other_details"
-                            placeholder="Other details">
-                    </div>
-                    <!--end col-->
-
                     <div class="hstack gap-2 justify-content-end px-2 mb-2">
                         <button type="button" class="btn btn-ghost-danger" data-bs-dismiss="modal"><i
                                 class="ri-close-fill align-bottom"></i> Close</button>
-                        <button type="submit" class="btn btn-primary" id="addNewTodo">submit</button>
+                        <button type="submit" class="btn btn-primary" id="addNewTodo">Submit</button>
                     </div>
                 </form>
             </div>

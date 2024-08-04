@@ -1,5 +1,3 @@
-{% load socialaccount %}
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -22,13 +20,13 @@
                     {% csrf_token %}
                     <div class="input-field">
                         <i class="fas fa-user"></i>
-                        {{ form.first_name }}
+                        {{ form.name }}
                         <!-- <input type="text" name="first_name" placeholder="First Name" /> -->
                     </div>
                     <div class="input-field">
-                        <i class="fas fa-user"></i>
-                        {{ form.last_name }}
-                        <!-- <input type="text" name="last_name" placeholder="Last Name" /> -->
+                        <i class="fas fa-envelope"></i>
+                        {{ form.email }}
+                        <!-- <input type="email" name="email" placeholder="Email" /> -->
                     </div>
                     <div class="input-field">
                         <i class="fas fa-user"></i>
@@ -45,24 +43,7 @@
                         {{ form.password2 }}
                         <!-- <input type="password" name="password2" placeholder="Confirm Password" /> -->
                     </div>
-                    <div class="input-field">
-                        <i class="fas fa-envelope"></i>
-                        {{ form.email }}
-                        <!-- <input type="email" name="email" placeholder="Email" /> -->
-                    </div>
                     <input type="submit" value="Signup" class="btn solid" />
-                    <p class="social-text">or Login with</p>
-                    <div class="social-media">
-                        <a href="{% provider_login_url 'google' %}" class="social-icon">
-                            <i class="fab fa-google"></i>
-                        </a>
-                        <a href="{% provider_login_url 'github' %}" class="social-icon">
-                            <i class="fab fa-github fa-lg"></i>
-                        </a>
-                        <a href="{% provider_login_url 'discord' %}" class="social-icon">
-                            <i class="fab fa-discord fa-lg"></i>
-                        </a>
-                    </div>
                 </form>
             </div>
         </div>
