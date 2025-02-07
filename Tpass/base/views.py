@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
-from .forms import SignUpForm
+from .forms import CustomUserCreationForm
 
 # Create your views here.
 
@@ -10,23 +10,31 @@ def home(request):
 
 def login_user(request):
     if request.method == 'POST':
-        username = request.POST["username"]
-        password = request.POST["password"]
+        username = request.POST.get("username", "").strip()
+        password = request.POST.get("password", "").strip()
+
+        if not username:
+            messages.error(request, "Username is required!")
+            return redirect('login_user')
+        
+        if not password :
+            messages.error(request, "Password is required!")
+            return redirect('login_user')
+
         user = authenticate(request, username=username, password=password)
         if user is not None:
             login(request, user)
-            # messages.success(request, "You are successfully logged in !")
+            messages.success(request, "You are successfully logged in!")
             return redirect('dashboard_home')
         else:
-            # messages.success(request, "Error occured, try again !")
+            messages.error(request, "Invalid username or password!")
             return redirect('login_user')
-    
-    else:   
-        return render(request, 'login.html', {})
+
+    return render(request, 'login.html', {})
     
 def signup_user(request):
     if request.method == 'POST':
-        form = SignUpForm(request.POST)
+        form = CustomUserCreationForm(request.POST)
         if form.is_valid():
             username = form.cleaned_data['username']
             password = form.cleaned_data['password1']
@@ -39,7 +47,7 @@ def signup_user(request):
                 return redirect('signup_user')
 
     else:
-        form = SignUpForm()
+        form = CustomUserCreationForm()
         return render(request, 'signup.html', {'form':form})
 
     return render(request, 'signup.html', {'form':form})

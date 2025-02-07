@@ -8,6 +8,9 @@ from .forms import *
 
 @login_required
 def dashboard_home(request):
+
+    user = request.user
+
     password_items = PasswordItem.objects.filter(user = request.user)
     space = Space.objects.all()
 
